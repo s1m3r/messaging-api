@@ -1,5 +1,7 @@
 package controller;
 
+import dto.MessageDto;
+import dto.MessageResponseDto;
 import module.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +19,20 @@ public class MessageController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Message create(@RequestBody Message message) {
-        return messageService.send(
+    public MessageResponseDto create(@RequestBody MessageDto dto) {
+        Message message = messageService.send(
+                dto.getSender(),
+                dto.getReceiver(),
+                dto.getContent()
+        );
+        MessageResponseDto response = new MessageResponseDto(
+                message.getId(),
                 message.getSender(),
                 message.getReceiver(),
-                message.getContent()
+                message.getContent(),
+                message.getCreatedAt()
         );
+        return response;
     }
 
     @GetMapping

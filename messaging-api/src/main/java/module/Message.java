@@ -20,10 +20,11 @@ public class Message {
     private LocalDateTime createdAt;
     public Message(){}
 
-    public Message(String receiver, String sender, String content) {
+    public Message(String receiver, String sender, String content, LocalDateTime createdAt) {
         this.receiver = receiver;
         this.sender = sender;
         this.content = content;
+        this.createdAt = createdAt;
     }
 
     public LocalDateTime getCreatedAt() {
