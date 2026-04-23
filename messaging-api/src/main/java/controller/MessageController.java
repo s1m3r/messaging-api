@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import service.MessageService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,7 +16,10 @@ public class MessageController {
 
     private final MessageService messageService;
 
-    public MessageController(MessageService messageService) {this.messageService = messageService;}
+
+    public MessageController(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -23,7 +27,8 @@ public class MessageController {
         Message message = messageService.send(
                 dto.getSender(),
                 dto.getReceiver(),
-                dto.getContent()
+                dto.getContent(),
+                dto.getCreatedAt()
         );
         MessageResponseDto response = new MessageResponseDto(
                 message.getId(),
@@ -36,5 +41,21 @@ public class MessageController {
     }
 
     @GetMapping
-    public List<Message> getAll(){ return messageService.getAll();}
+    public List<MessageResponseDto> getAll() {
+
+        List<Message> messages = messageService.getAll();
+        List<MessageResponseDto> response = new ArrayList<>();
+        for (Message message : messages) {
+            response.add(
+                    new MessageResponseDto(
+                            message.getId(),
+                            message.getSender(),
+                            message.getReceiver(),
+                            message.getContent(),
+                            message.getCreatedAt()
+                    )
+            );
+        }
+        return response;
+    }
 }

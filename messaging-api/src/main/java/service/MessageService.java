@@ -13,8 +13,8 @@ public class MessageService {
 
     public MessageService(MessageRepository repository) {this.repository = repository;}
 
-    public Message send(String sender, String receiver, String content){
-        Message message = new Message(sender, receiver, content);
+    public Message send(String sender, String receiver, String content, LocalDateTime createdAt){
+        Message message = new Message(receiver, sender, content, createdAt);
         return repository.save(message);
     }
 

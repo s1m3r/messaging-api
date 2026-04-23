@@ -1,15 +1,28 @@
 package dto;
 
+import java.time.LocalDateTime;
+
 public class MessageDto {
     private String sender;
     private String receiver;
     private String content;
+
+    private LocalDateTime createdAt;
     public MessageDto() {}
 
-    public MessageDto(String sender, String receiver, String content) {
+    public MessageDto(String sender, String receiver, String content, LocalDateTime createdAt) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getSender() {
