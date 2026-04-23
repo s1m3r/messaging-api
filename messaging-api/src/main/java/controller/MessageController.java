@@ -2,6 +2,7 @@ package controller;
 
 import dto.MessageDto;
 import dto.MessageResponseDto;
+import jakarta.validation.Valid;
 import module.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class MessageController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDto create(@RequestBody MessageDto dto) {
+    public MessageResponseDto create(@Valid @RequestBody MessageDto dto) {
         Message message = messageService.send(
                 dto.getSender(),
                 dto.getReceiver(),

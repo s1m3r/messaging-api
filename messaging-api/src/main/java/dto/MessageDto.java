@@ -1,10 +1,14 @@
 package dto;
 
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
 
 public class MessageDto {
+    @NotBlank
     private String sender;
+    @NotBlank
     private String receiver;
+    @NotBlank
     private String content;
 
     private LocalDateTime createdAt;
