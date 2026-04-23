@@ -1,4 +1,4 @@
-package dto;
+package messaging.api.dto;
 
 import java.time.LocalDateTime;
 import jakarta.validation.constraints.NotBlank;
@@ -11,23 +11,15 @@ public class MessageDto {
     @NotBlank
     private String content;
 
-    private LocalDateTime createdAt;
     public MessageDto() {}
 
-    public MessageDto(String sender, String receiver, String content, LocalDateTime createdAt) {
+    public MessageDto(String sender, String receiver, String content) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
-        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public String getSender() {
         return sender;

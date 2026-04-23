@@ -1,6 +1,6 @@
-package repository;
+package messaging.api.repository;
 
-import module.Message;
+import messaging.api.module.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {

@@ -1,12 +1,12 @@
-package controller;
+package messaging.api.controller;
 
-import dto.MessageDto;
-import dto.MessageResponseDto;
+import messaging.api.dto.MessageDto;
+import messaging.api.dto.MessageResponseDto;
 import jakarta.validation.Valid;
-import module.Message;
+import messaging.api.module.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import service.MessageService;
+import messaging.api.service.MessageService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +28,7 @@ public class MessageController {
         Message message = messageService.send(
                 dto.getSender(),
                 dto.getReceiver(),
-                dto.getContent(),
-                dto.getCreatedAt()
+                dto.getContent()
         );
         MessageResponseDto response = new MessageResponseDto(
                 message.getId(),

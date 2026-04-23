@@ -1,4 +1,4 @@
-package dto;
+package messaging.api.dto;
 
 import java.time.LocalDateTime;
 
